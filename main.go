@@ -26,6 +26,8 @@ func print_items(cols [][]string) {
 	fmt.Println("Enter the name of the meal :- ")
 	scanner.Scan()
 	meal := scanner.Text()
+	day = strings.TrimSpace(day)
+	meal = strings.TrimSpace(meal)
 	sc, err := spellcheck.New()
 	if err != nil {
 		fmt.Println(err)
@@ -69,6 +71,8 @@ func return_items(cols [][]string) int {
 	fmt.Println("Enter the name of the meal :- ")
 	scanner.Scan()
 	meal := scanner.Text()
+	day = strings.TrimSpace(day)
+	meal = strings.TrimSpace(meal)
 	sc, err := spellcheck.New()
 	if err != nil {
 		fmt.Println(err)
@@ -115,6 +119,9 @@ func is_item(cols [][]string) {
 	fmt.Println("Enter the name of the dish you want to search :- ")
 	scanner.Scan()
 	key := scanner.Text()
+	day = strings.TrimSpace(day)
+	meal = strings.TrimSpace(meal)
+	key = strings.TrimSpace(key)
 	sc, err := spellcheck.New()
 	if err != nil {
 		fmt.Println(err)
