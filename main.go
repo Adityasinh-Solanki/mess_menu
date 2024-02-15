@@ -7,7 +7,6 @@ import (
 	"os"
 	"strings"
 
-	"github.com/makifdb/spellcheck"
 	"github.com/xuri/excelize/v2"
 )
 
@@ -26,33 +25,31 @@ func print_items(cols [][]string) {
 	fmt.Println("Enter the name of the meal :- ")
 	scanner.Scan()
 	meal := scanner.Text()
-	day = strings.TrimSpace(day)
-	meal = strings.TrimSpace(meal)
-	sc, err := spellcheck.New()
-	if err != nil {
-		fmt.Println(err)
-	}
-	ok1 := sc.SearchDirect(day)
-	ok2 := sc.SearchDirect(meal)
-	if !ok1 || !ok2 {
-		fmt.Println()
-		fmt.Println("Invalid input , words are misspelled or not in the Sample Menu")
-		return
-	}
 	day = strings.ToUpper(day)
 	meal = strings.ToUpper(meal)
-	fmt.Println()
+	day = strings.TrimSpace(day)
+	meal = strings.TrimSpace(meal)
 	var i int
 	for i = 0; i < 7; i++ {
 		if cols[i][0] == day {
 			break
 		}
 	}
+	if i == 7 {
+		fmt.Println()
+		fmt.Println("Invalid input , words are misspelled or not in the Sample Menu")
+		return
+	}
 	var j int
 	for j = 3; j < len(cols[i]); j++ {
 		if cols[i][j-1] == meal {
 			break
 		}
+	}
+	if j == len(cols[i]) {
+		fmt.Println()
+		fmt.Println("Invalid input , words are misspelled or not in the Sample Menu")
+		return
 	}
 	for k := j; k < len(cols[i]); k++ {
 		if cols[i][k] == day || cols[i][k] == "" {
@@ -71,33 +68,31 @@ func return_items(cols [][]string) int {
 	fmt.Println("Enter the name of the meal :- ")
 	scanner.Scan()
 	meal := scanner.Text()
-	day = strings.TrimSpace(day)
-	meal = strings.TrimSpace(meal)
-	sc, err := spellcheck.New()
-	if err != nil {
-		fmt.Println(err)
-	}
-	ok1 := sc.SearchDirect(day)
-	ok2 := sc.SearchDirect(meal)
-	if !ok1 || !ok2 {
-		fmt.Println()
-		fmt.Println("Invalid input , words are misspelled or not in the Sample Menu")
-		return 0
-	}
 	day = strings.ToUpper(day)
 	meal = strings.ToUpper(meal)
-	fmt.Println()
+	day = strings.TrimSpace(day)
+	meal = strings.TrimSpace(meal)
 	var i int
 	for i = 0; i < 7; i++ {
 		if cols[i][0] == day {
 			break
 		}
 	}
+	if i == 7 {
+		fmt.Println()
+		fmt.Println("Invalid input , words are misspelled or not in the Sample Menu")
+		return 0
+	}
 	var j int
 	for j = 3; j < len(cols[i]); j++ {
 		if cols[i][j-1] == meal {
 			break
 		}
+	}
+	if j == len(cols[i]) {
+		fmt.Println()
+		fmt.Println("Invalid input , words are misspelled or not in the Sample Menu")
+		return 0
 	}
 	for k := j; k < len(cols[i]); k++ {
 		if cols[i][k] == day || cols[i][k] == "" {
@@ -119,34 +114,33 @@ func is_item(cols [][]string) {
 	fmt.Println("Enter the name of the dish you want to search :- ")
 	scanner.Scan()
 	key := scanner.Text()
-	day = strings.TrimSpace(day)
-	meal = strings.TrimSpace(meal)
-	key = strings.TrimSpace(key)
-	sc, err := spellcheck.New()
-	if err != nil {
-		fmt.Println(err)
-	}
-	ok1 := sc.SearchDirect(day)
-	ok2 := sc.SearchDirect(meal)
-	if !ok1 || !ok2 {
-		fmt.Println()
-		fmt.Println("Invalid input , words are misspelled or not in the Sample Menu")
-		return
-	}
 	day = strings.ToUpper(day)
 	meal = strings.ToUpper(meal)
 	key = strings.ToUpper(key)
+	day = strings.TrimSpace(day)
+	meal = strings.TrimSpace(meal)
+	key = strings.TrimSpace(key)
 	var i int
 	for i = 0; i < 7; i++ {
 		if cols[i][0] == day {
 			break
 		}
 	}
+	if i == 7 {
+		fmt.Println()
+		fmt.Println("Invalid input , words are misspelled or not in the Sample Menu")
+		return
+	}
 	var j int
 	for j = 3; j < len(cols[i]); j++ {
 		if cols[i][j-1] == meal {
 			break
 		}
+	}
+	if j == len(cols[i]) {
+		fmt.Println()
+		fmt.Println("Invalid input , words are misspelled or not in the Sample Menu")
+		return
 	}
 	for k := j; k < len(cols[i]); k++ {
 		if cols[i][k] == day || cols[i][k] == "" {
@@ -266,3 +260,4 @@ func main() {
 		fmt.Println("Structures created succesfully")
 	}
 }
+
